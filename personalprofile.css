@@ -66,7 +66,7 @@ html {
     @media (max-width: 768px) {
       .intro .intro-img {
         position: relative;
-        opacity: 0.65;
+        opacity: 0.75;
         background: center/cover no-repeat url("./assets/images/home-toronto.jpg"); } }
     .intro .intro-img .content-container {
       position: absolute;
@@ -91,7 +91,7 @@ html {
         .intro .intro-img .content-container .name-container .description {
           text-decoration: unset; }
       .intro .intro-img .content-container .skill {
-        display: flex;
+        display: none;
         flex-flow: row wrap;
         justify-content: space-around;
         padding: 0.5rem;
@@ -122,20 +122,52 @@ html {
     letter-spacing: 0.5rem;
     text-align: center;
     text-align: center; }
-  .projects .proj-name {
+  .projects .proj-content {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    padding: 1rem;
-    font-size: 1.5rem;
-    letter-spacing: 0.3rem;
+    display: flex;
     text-align: center; }
-    .projects .proj-name .line {
-      width: 10px;
+    @media (max-width: 768px) {
+      .projects .proj-content {
+        flex-flow: column; } }
+    @media (min-width: 768px) {
+      .projects .proj-content {
+        display: flex;
+        justify-content: center;
+        width: 100%; } }
+    .projects .proj-content .icon-container {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 0.5rem; }
+      @media (min-width: 768px) {
+        .projects .proj-content .icon-container {
+          display: flex;
+          flex-flow: column;
+          text-align: center; } }
+      .projects .proj-content .icon-container a {
+        color: white; }
+        .projects .proj-content .icon-container a .fa {
+          font-size: 2rem;
+          text-align: center; }
+    .projects .proj-content .line {
+      align-self: center;
+      height: 2em;
+      width: 5px;
       background: black; }
+      @media (min-width: 768px) {
+        .projects .proj-content .line {
+          align-self: center;
+          width: 2em;
+          height: 5px; } }
+    .projects .proj-content .name {
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      padding: 1rem;
+      font-size: 1.5rem;
+      letter-spacing: 0.3rem;
+      text-align: center; }
   .projects .project-0-img {
     min-height: 100vh; }
     @media (min-width: 768px) {
@@ -149,7 +181,7 @@ html {
     @media (max-width: 768px) {
       .projects .project-0-img {
         position: relative;
-        opacity: 0.65;
+        opacity: 0.75;
         background: center/cover no-repeat url("./assets/images/twitch.PNG"); } }
   .projects .project-1-img {
     min-height: 100vh; }
@@ -164,7 +196,7 @@ html {
     @media (max-width: 768px) {
       .projects .project-1-img {
         position: relative;
-        opacity: 0.65;
+        opacity: 0.75;
         background: center/cover no-repeat url("./assets/images/weather.PNG"); } }
   .projects .project-2-img {
     min-height: 100vh; }
@@ -179,7 +211,7 @@ html {
     @media (max-width: 768px) {
       .projects .project-2-img {
         position: relative;
-        opacity: 0.65;
+        opacity: 0.75;
         background: center/cover no-repeat url("./assets/images/pomo.PNG"); } }
   .projects .project-3-img {
     min-height: 100vh; }
@@ -194,7 +226,7 @@ html {
     @media (max-width: 768px) {
       .projects .project-3-img {
         position: relative;
-        opacity: 0.65;
+        opacity: 0.75;
         background: center/cover no-repeat url("./assets/images/wiki.PNG"); } }
   .projects .project-4-img {
     min-height: 100vh; }
@@ -209,14 +241,12 @@ html {
     @media (max-width: 768px) {
       .projects .project-4-img {
         position: relative;
-        opacity: 0.65;
+        opacity: 0.75;
         background: center/cover no-repeat url("./assets/images/quote.PNG"); } }
 
 .contact {
-  background: #e5e6e9; }
-  @media (min-width: 768px) {
-    .contact {
-      padding-bottom: 2em; } }
+  background: #e5e6e9;
+  padding-bottom: 2em; }
   .contact .title {
     color: white;
     background: #282e34;
@@ -235,6 +265,9 @@ html {
         padding: 0; } }
     .contact .contact-icons > * {
       padding-top: 1em; }
+      @media (max-width: 768px) {
+        .contact .contact-icons > * {
+          flex: 1 1 100%; } }
     .contact .contact-icons .fa {
       vertical-align: middle;
       font-size: 1.5em; }
