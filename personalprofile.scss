@@ -208,6 +208,7 @@ html {
                 }
             }
         }
+        // black line to connect project name and 'view-' links
         .line {
             align-self: center;
             height: 2em;
@@ -219,6 +220,7 @@ html {
                 height: 5px;
             }
         }
+        // name of each project
         .name {
             @include nameStyle;
         }
@@ -289,6 +291,7 @@ html {
             align-items: center;
             padding: 0; // remove default
         }
+        // target each individual icon div
         &>* {
             padding-top: 1em;
             @media(max-width: $tablet) {
