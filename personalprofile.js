@@ -13,4 +13,40 @@ $(document).ready(function() {
             }
         }
     });
+
+    // Animate when scrolled into view
+    // selector caching - so we don't have to call the DOM each scroll
+    var $animated = $('.animated'); // list of elements to be animated
+    var $window = $(window);
+
+    // runs event everytime user scroll or resize browser
+    $window.on('scroll resize', checkInView);
+
+    // trigger scrolls on load, check if there are elements to be animated in beginning view
+    $window.trigger('scroll');
+
+    // checks 
+
+    function checkInView(){
+        // Get dimensions of current viewport
+        var windowHeight = $window.height();
+        var windowTopPos = $window.scrollTop(); // gets scrollbar pos
+        var windowBotPos = windowTopPos + windowHeight; // tracking bottom of viewport
+
+        $.each($animated,function(){
+            var $el = $(this);
+            var elHeight = $el.outerHeight();
+            var elTopPos = $el.offset().top;
+            var elBotPos = (elTopPos + elHeight); // tracking bottom of el, ie: when el is fully in viewport
+
+            // check if el is fully in viewport
+            if ((elBotPos >= windowTopPos) && (elTopPos <= windowBotPos)){
+                $el.addClass('in-view');
+            }
+            else{
+                $el.removeClass('in-view');
+            }
+        });
+    }
+
 });

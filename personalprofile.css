@@ -66,8 +66,10 @@ html {
     @media (max-width: 768px) {
       .intro .intro-img {
         position: relative;
-        opacity: 0.75;
-        background: center/cover no-repeat url("./assets/images/home-toronto.jpg"); } }
+        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("./assets/images/home-toronto.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat; } }
     .intro .intro-img .content-container {
       position: absolute;
       left: 50%;
@@ -80,7 +82,7 @@ html {
         position: relative;
         left: 50%;
         transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.9);
+        background: rgba(0, 0, 0, 0.8);
         color: white;
         padding: 1rem;
         font-size: 1.5rem;
@@ -137,32 +139,45 @@ html {
         display: flex;
         justify-content: center;
         width: 100%; } }
-    .projects .proj-content .icon-container {
+    .projects .proj-content [class*='icon-container'] {
       display: inline-block;
+      position: relative;
       background: rgba(0, 0, 0, 0.8);
       padding: 0.5rem; }
       @media (min-width: 768px) {
-        .projects .proj-content .icon-container {
+        .projects .proj-content [class*='icon-container'] {
           display: flex;
           flex-flow: column;
           text-align: center; } }
-      .projects .proj-content .icon-container a {
+      .projects .proj-content [class*='icon-container'] a {
         color: white; }
-        .projects .proj-content .icon-container a .fa {
+        .projects .proj-content [class*='icon-container'] a .fa {
           font-size: 2rem;
           text-align: center; }
+    .projects .proj-content .icon-container-left {
+      left: -50px;
+      opacity: 0; }
+    .projects .proj-content .icon-container-right {
+      left: 50px;
+      opacity: 0; }
+    .projects .proj-content .animated {
+      transition: all 1s ease; }
+    .projects .proj-content .in-view {
+      left: 0px;
+      opacity: 1; }
     .projects .proj-content .line {
+      position: relative;
       align-self: center;
-      height: 2em;
+      height: 2rem;
       width: 5px;
       background: black; }
       @media (min-width: 768px) {
         .projects .proj-content .line {
           align-self: center;
-          width: 2em;
+          width: 2rem;
           height: 5px; } }
     .projects .proj-content .name {
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.8);
       color: white;
       padding: 1rem;
       font-size: 1.5rem;
@@ -181,8 +196,10 @@ html {
     @media (max-width: 768px) {
       .projects .project-0-img {
         position: relative;
-        opacity: 0.75;
-        background: center/cover no-repeat url("./assets/images/twitch.PNG"); } }
+        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("./assets/images/twitch.PNG");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat; } }
   .projects .project-1-img {
     min-height: 100vh; }
     @media (min-width: 768px) {
@@ -196,8 +213,10 @@ html {
     @media (max-width: 768px) {
       .projects .project-1-img {
         position: relative;
-        opacity: 0.75;
-        background: center/cover no-repeat url("./assets/images/weather.PNG"); } }
+        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("./assets/images/weather.PNG");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat; } }
   .projects .project-2-img {
     min-height: 100vh; }
     @media (min-width: 768px) {
@@ -211,8 +230,10 @@ html {
     @media (max-width: 768px) {
       .projects .project-2-img {
         position: relative;
-        opacity: 0.75;
-        background: center/cover no-repeat url("./assets/images/pomo.PNG"); } }
+        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("./assets/images/pomo.PNG");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat; } }
   .projects .project-3-img {
     min-height: 100vh; }
     @media (min-width: 768px) {
@@ -226,8 +247,10 @@ html {
     @media (max-width: 768px) {
       .projects .project-3-img {
         position: relative;
-        opacity: 0.75;
-        background: center/cover no-repeat url("./assets/images/wiki.PNG"); } }
+        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("./assets/images/wiki.PNG");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat; } }
   .projects .project-4-img {
     min-height: 100vh; }
     @media (min-width: 768px) {
@@ -241,8 +264,10 @@ html {
     @media (max-width: 768px) {
       .projects .project-4-img {
         position: relative;
-        opacity: 0.75;
-        background: center/cover no-repeat url("./assets/images/quote.PNG"); } }
+        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("./assets/images/quote.PNG");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat; } }
 
 .contact {
   background: #e5e6e9;

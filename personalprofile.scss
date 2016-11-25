@@ -36,8 +36,11 @@ html {
 // ios issues with fixed background
 @mixin mobileParallaxCSS($img-url) {
     position: relative;
-    opacity: 0.75;
-    background: center/cover no-repeat $img-url;
+    // method to prevent img opacity from affecting child elements
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), $img-url;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 // horizontally and vertically center element
@@ -60,7 +63,7 @@ html {
 
 // style project names
 @mixin nameStyle {
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 1rem;
     font-size: 1.5rem;
@@ -97,6 +100,7 @@ html {
                 @media(min-width: $tablet) {
                     letter-spacing: 0.3rem;
                     border: unset; // remove border set for mobile (using animated white line instead)
+                    // --------------------------- animate white line
                     &:before {
                         @include animate-white-line;
                     }
@@ -108,6 +112,7 @@ html {
                             width: 100%;
                         }
                     }
+                    //-----------------------------
                 }
             }
         }
@@ -140,7 +145,7 @@ html {
                 }
             }
             .skill {
-                display:none; //////////////// test@@@@@@@@@@@@
+                display: none; //////////////// test@@@@@@@@@@@@
                 // display: flex;
                 flex-flow: row wrap;
                 justify-content: space-around;
@@ -191,8 +196,9 @@ html {
             width: 100%;
         }
         // for 'view code' and 'view site' icons
-        .icon-container {
+        [class*='icon-container'] {
             display: inline-block; // background only extends up to icons
+            position: relative;
             background: rgba(0, 0, 0, 0.8);
             padding: 0.5rem;
             @media(min-width: $tablet) {
@@ -208,15 +214,35 @@ html {
                 }
             }
         }
+        // ---------------------------- animation of 'view-code and view-github'
+        .icon-container-left {
+            left: -50px;
+            opacity: 0;
+        }
+        .icon-container-right {
+            left: 50px;
+            opacity: 0;
+        }
+        .animated {
+            transition: all 1s ease;
+        }
+        // applied when elements with '.animated' is in viewport
+        .in-view {
+            left: 0px;
+            opacity: 1;
+        }
+        // -----------------------------------------------------------
+
         // black line to connect project name and 'view-' links
         .line {
+            position: relative;
             align-self: center;
-            height: 2em;
+            height: 2rem;
             width: 5px;
             background: black;
             @media(min-width: $tablet) {
                 align-self: center;
-                width: 2em;
+                width: 2rem;
                 height: 5px;
             }
         }
