@@ -7,7 +7,7 @@ $(document).ready(function() {
             target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
             if (target.length) {
                 $('html,body').animate({
-                    scrollTop: target.offset().top - 39
+                    scrollTop: target.offset().top - 39 // adjust for padding
                 }, 1000);
                 return false;
             }
@@ -35,11 +35,12 @@ $(document).ready(function() {
 
         $.each($animated,function(){
             var $el = $(this);
+            // Get dimensions and position of each element
             var elHeight = $el.outerHeight();
             var elTopPos = $el.offset().top;
             var elBotPos = (elTopPos + elHeight); // tracking bottom of el, ie: when el is fully in viewport
 
-            // check if el is fully in viewport
+            // check if el is fully in viewport (*maybe try removing eltoppos<=windowbotpos)
             if ((elBotPos >= windowTopPos) && (elTopPos <= windowBotPos)){
                 $el.addClass('in-view');
             }
