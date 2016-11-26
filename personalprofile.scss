@@ -61,7 +61,7 @@ html {
     background: #282e34;
     padding: 1rem;
     margin: 0; // remove default
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.3rem;
     text-align: center;
 }
 
@@ -323,6 +323,7 @@ html {
 }
 
 .about {
+    overflow-x:hidden; // hides horz scrollbar due to initial pos of animated elements
     @media(min-width: $tablet) {
         @include parallaxCSS( url("./assets/images/learning-bg.jpg"));
         background-size: cover;
@@ -370,6 +371,26 @@ html {
                 max-height: 10em;
             }
         }
+    }
+    //----------------animation
+    .ydkjs,
+    .htmlandcss{
+        position:relative;
+        left:-10%;
+        opacity:0;
+    }
+    .eloquentjs,
+    .fcc{
+        position:relative;
+        left:10%;
+        opacity:0;
+    }
+    .animated{
+        transition:all 1s ease;
+    }
+    .in-view{
+        left:0;
+        opacity:1;
     }
 }
 
