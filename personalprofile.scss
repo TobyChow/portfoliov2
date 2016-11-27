@@ -323,12 +323,12 @@ html {
 }
 
 .about {
-    overflow-x:hidden; // hides horz scrollbar due to initial pos of animated elements
+    overflow-x: hidden; // hides horz scrollbar due to initial pos of animated elements
     @media(min-width: $tablet) {
         @include parallaxCSS( url("./assets/images/learning-bg.jpg"));
         background-size: cover;
     }
-    @media(max-width:$tablet){
+    @media(max-width:$tablet) {
         @include mobileParallaxCSS( url("./assets/images/learning-bg.jpg"));
     }
     display: flex;
@@ -341,7 +341,10 @@ html {
             size: 1.4rem;
         }
         padding:1em;
-        background:rgba(194,204,199,0.7);
+        background:rgba(194,
+        204,
+        199,
+        0.7);
         border-radius:5px;
         @media(min-width:$tablet) {
             width: 50vw;
@@ -364,7 +367,7 @@ html {
                 min-height: 5em; // aligns images vertically
                 margin: 1em;
                 font-size: 1.2em;
-                background: rgba(255, 255, 255, 0.4);
+                background: rgba(255, 255, 255, 0.6);
             }
             img {
                 max-width: 100%;
@@ -374,23 +377,23 @@ html {
     }
     //----------------animation
     .ydkjs,
-    .htmlandcss{
-        position:relative;
-        left:-10%;
-        opacity:0;
+    .htmlandcss {
+        position: relative;
+        left: -10%;
+        opacity: 0;
     }
     .eloquentjs,
-    .fcc{
-        position:relative;
-        left:10%;
-        opacity:0;
+    .fcc {
+        position: relative;
+        left: 10%;
+        opacity: 0;
     }
-    .animated{
-        transition:all 1s ease;
+    .animated {
+        transition: all 1s ease;
     }
-    .in-view{
-        left:0;
-        opacity:1;
+    .in-view {
+        left: 0;
+        opacity: 1;
     }
 }
 
@@ -412,9 +415,10 @@ html {
         }
         // target each individual icon div
         &>* {
+            flex: 1 1 100%; // each contact in columns on mobile
             padding-top: 1em;
-            @media(max-width: $tablet) {
-                flex: 1 1 100%; // each contact in columns on mobile
+            @media(min-width: $tablet) {
+                flex: none; // remove flex for non-mobile
             }
         }
         // align icons to middle of text
