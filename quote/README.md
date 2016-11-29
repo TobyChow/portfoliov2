@@ -2,4 +2,12 @@
 
 ### Features
 - Share a quote using the tweet button
-- Quote will not repeat itself in succession
+- Quote with not repeat in succession
+
+### Built With
+- HTML5
+- CSS3
+- JavaScript
+- Bootstrap
+- jQuery
+- Twitter Tweet Button
