@@ -4,96 +4,6 @@ var query;
 var input = document.getElementsByTagName('input')[0]; // returns array of matched tags
 var content = document.getElementsByClassName('content')[0]; // returns array of matched el
 
-//--------------------------- Get Wikipedia's API
-function wikiData(query) {
-    // create HTTP request
-    var httpRequest = new XMLHttpRequest(); // create instance of XMLHTTP 
-
-    // make request
-    // note, must pass in &origin=* for CORS 
-    var url = "http://en.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&exlimit=max&format=json&exsentences=1&exintro=&explaintext=&generator=search&gsrlimit=10&gsrsearch=" + query;
-    httpRequest.open('GET', url);
-    httpRequest.send(null); // data to send if using 'POST'
-
-    // action to take after server response
-    httpRequest.onreadystatechange = function() {
-        // check state of request, XMLHttpRequest.DONE evalutes to 4 if full server response has been received
-        if (httpRequest.readyState === XMLHttpRequest.DONE) {
-            // check if AJAX successful (200 OK)
-            if (httpRequest.status === 200) {
-                var data = JSON.parse(httpRequest.responseText); // parse data received as JSON string into a JS object
-                // Message if no results available
-                if (!data.hasOwnProperty('query')) {
-                    // create node to append to '.content'
-                    var noResultsHTML = document.createElement('div');
-                    noResultsHTML.className = 'alert alert-warning';
-                    noResultsHTML.setAttribute('role', 'alert');
-                    noResultsHTML.textContent = 'No Results Available';
-                    // append new node to content
-                    content.appendChild(noResultsHTML);
-                    // $('.content').append('<div class="alert alert-warning" role="alert">No Results Available</div>');
-                }
-                var result = data.query.pages;
-                for (var key in result) {
-                    var pageInfo = result[key];
-                    //Creates individual boxes for each title and corresponding description
-                    var resultNode = document.createElement('div');
-                    resultNode.className = 'panel panel-info col-md-6';
-                    resultNode.innerHTML = `
-                            <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    <a target="_blank" href="https://en.wikipedia.org/?curid=${pageInfo.pageid}">${pageInfo.title}</a>
-                                </h3>
-                            </div>
-                            <div class="panel-body">${pageInfo.extract}</div>
-                        `;
-                    content.appendChild(resultNode);
-                    // $('.content').append(
-                    //     `<div class="panel panel-info col-md-6">
-                    //     <div class="panel-heading">
-                    //         <h3 class="panel-title">
-                    //             <a target="_blank" href="https://en.wikipedia.org/?curid=${pageInfo.pageid}">${pageInfo.title}</a>
-                    //         </h3>
-                    //     </div>
-                    //     <div class="panel-body">${pageInfo.extract}</div>
-                    // </div>`);
-                }
-            } else {
-                alert('Error:' + httpRequest.status);
-            }
-        }
-    };
-}
-
-
-
-// function wikiData(query) {
-//     $.ajax({
-//         url: "http://en.wikipedia.org/w/api.php?action=query&prop=extracts&exlimit=max&format=json&exsentences=1&exintro=&explaintext=&generator=search&gsrlimit=10&gsrsearch=" + query,
-//         dataType: 'jsonp',
-//         type: 'GET',
-//         success: function(data) {
-//             // Message if no results available
-//             if (!data.hasOwnProperty('query')) {
-//                 $('.content').append('<div class="alert alert-warning" role="alert">No Results Available</div>');
-//             }
-//             var result = data.query.pages;
-//             for (var key in result) {
-//                 var pageInfo = result[key];
-//                 //Creates individual boxes for each title and corresponding description
-//                 $('.content').append(
-//                     `<div class="panel panel-info col-md-6">
-//                         <div class="panel-heading">
-//                             <h3 class="panel-title">
-//                                 <a target="_blank" href="https://en.wikipedia.org/?curid=${pageInfo.pageid}">${pageInfo.title}</a>
-//                             </h3>
-//                         </div>
-//                         <div class="panel-body">${pageInfo.extract}</div>
-//                     </div>`);
-//             }
-//         }
-//     });
-// }
 //Updates recent search bar, clears content section and displays new results
 function displayResults() {
 
@@ -135,10 +45,61 @@ function displayResults() {
     wikiData(query);
 }
 
+//--------------------------- Get Wikipedia's API
+function wikiData(query) {
+    // create HTTP request
+    var httpRequest = new XMLHttpRequest(); // create instance of XMLHTTP 
+
+    // make request
+    // note, must pass in &origin=* for CORS 
+    var url = "http://en.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&exlimit=max&format=json&exsentences=1&exintro=&explaintext=&generator=search&gsrlimit=10&gsrsearch=" + query;
+    httpRequest.open('GET', url);
+    httpRequest.send(null); // data to send if using 'POST'
+
+    // action to take after server response
+    httpRequest.onreadystatechange = function() {
+        // check state of request, XMLHttpRequest.DONE evalutes to 4 if full server response has been received
+        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+            // check if AJAX successful (200 OK)
+            if (httpRequest.status === 200) {
+                var data = JSON.parse(httpRequest.responseText); // parse data received as JSON string into a JS object
+                // Message if no results available
+                if (!data.hasOwnProperty('query')) {
+                    // create node to append to '.content'
+                    var noResultsHTML = document.createElement('div');
+                    noResultsHTML.className = 'alert alert-warning';
+                    noResultsHTML.setAttribute('role', 'alert');
+                    noResultsHTML.textContent = 'No Results Available';
+                    // append new node to content
+                    content.appendChild(noResultsHTML);
+                }
+                var result = data.query.pages;
+                for (var key in result) {
+                    var pageInfo = result[key];
+                    //Creates individual boxes for each title and corresponding description
+                    var resultNode = document.createElement('div');
+                    resultNode.className = 'panel panel-info col-md-6';
+                    resultNode.innerHTML = `
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <a target="_blank" href="https://en.wikipedia.org/?curid=${pageInfo.pageid}">${pageInfo.title}</a>
+                                </h3>
+                            </div>
+                            <div class="panel-body">${pageInfo.extract}</div>
+                        `;
+                    content.appendChild(resultNode);
+                }
+            } else {
+                alert('Error:' + httpRequest.status);
+            }
+        }
+    };
+}
+
+
 //Displays results when search button is clicked
 var search = document.getElementsByClassName('search')[0];
 search.addEventListener('click', displayResults);
-// $(".search").on('click', displayResults);
 
 
 //Remove search results and query on 'X' click
@@ -148,11 +109,6 @@ remove.addEventListener('click', function() {
     input.focus();
     content.innerHTML = '';
 });
-// $(".remove").click(function() {
-//     $("input").val('');
-//     $("input").focus();
-//     $('.content').html('');
-// });
 
 //Display results when 'Enter' key pressed
 input.addEventListener('keydown', function(evt) {
@@ -160,11 +116,6 @@ input.addEventListener('keydown', function(evt) {
         displayResults();
     }
 });
-// $("input").on('keydown', function(evt) {
-//     if (evt.which === 13) {
-//         displayResults();
-//     }
-// });
 
 //Clears 'Recent Search' when 'x' on recent search btn clicked 
 var recentBtn = document.getElementsByClassName('recent-btn')[0];
@@ -177,9 +128,6 @@ recentBtn.addEventListener('click', function() {
         recentSearchResult[0].parentNode.removeChild(recentSearchResult[0]);
     }
 });
-// $('.recent-btn').on('click', function() {
-//     $('.recent-search-result').remove();
-// });
 
 //Displays results when a topic under 'Recent Search' is clicked
 document.addEventListener('click', function(evt) {
@@ -190,19 +138,7 @@ document.addEventListener('click', function(evt) {
         wikiData(query);
     }
 });
-// $(document).on('click', '.recent-search-result', function() {
-//     query = $(this).text();
-//     $('.content').html('');
-//     wikiData(query);
-// });
 
-//Hover on '.recent-search-result' (requires this method for dynamic elements)
-// document.body.addEventListener('mouseenter', function(evt) {
-//     if ((evt.target.className).indexOf('recent-search-result') > -1) {
-//         var target = evt.target.style;
-//         target.color = 'blue';
-//     }
-// });
 
 function mouseEnterHandler(evt) {
     if ((evt.target.className).indexOf('recent-search-result') > -1) {
@@ -226,24 +162,3 @@ function mouseLeaveHandler(evt) {
         target.color = 'black';
     }
 }
-// $(document).on({
-//     mouseenter: function() {
-//         $(this).css({
-//             "white-space": "normal",
-//             "overflow": "visible",
-//             "z-index": "1",
-//             "min-width": "11em",
-//             // Experimental
-//             "width": "max-content"
-//         });
-//     },
-//     mouseleave: function() {
-//         $(this).css({
-//             "white-space": "nowrap",
-//             "overflow": "hidden",
-//             "text-overflow": "ellipsis",
-//             "width": "11em",
-//             "z-index": "0"
-//         });
-//     },
-// }, '.recent-search-result');
