@@ -197,6 +197,32 @@ html {
         @include titleStyle;
         text-align: center
     }
+    .skills {
+        display: inline-flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        height: 100vh;
+        & img {
+            position: relative;
+            width: 3rem;
+            height: 3rem;
+            margin: 1rem 0.3rem;
+            // for initial state of animation
+            left: -3rem;
+            opacity: 0;
+            @media(min-width: $tablet) {
+                margin: 1rem 1.5rem;
+            }
+            //---- animations
+            &.animated {
+                transition: all 1s ease;
+            }
+            &.in-view {
+                left: 0;
+                opacity: 1;
+            }
+        }
+    }
     // contains content in center 
     .proj-content {
         @include horzAndVertCenter;
@@ -216,7 +242,7 @@ html {
         [class*='icon-container'] {
             display: inline-block; // background only extends up to icons
             position: relative;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.7);
             padding: 0.5rem;
             @media(min-width: $tablet) {
                 display: flex;
@@ -226,12 +252,14 @@ html {
             a {
                 color: white;
                 .fa {
-                    font-size: 2rem;
+                    // width: 2em;
+                    // height: 2em;
+                    font-size: 2em;
                     text-align: center;
                 }
             }
         }
-        // ---------------------------- animation of 'view-code and view-github'
+        // ---------------------------- animation of 'view-site and view-github'
         .icon-container-left {
             left: -50px;
             opacity: 0;
@@ -281,10 +309,10 @@ html {
     // project 1 
     .project-1-img {
         @media(min-width: $tablet) {
-            @include parallaxCSS(url('./assets/images/weather.PNG'));
+            @include parallaxCSS(url('./assets/images/wiki.PNG'));
         }
         @media(max-width:$tablet) {
-            @include mobileParallaxCSS(url('./assets/images/weather.PNG'));
+            @include mobileParallaxCSS(url('./assets/images/wiki.PNG'));
         }
         min-height:100vh;
     }
@@ -299,10 +327,10 @@ html {
     }
     .project-3-img {
         @media(min-width: $tablet) {
-            @include parallaxCSS(url('./assets/images/wiki.PNG'));
+            @include parallaxCSS(url('./assets/images/weather.PNG'));
         }
         @media(max-width:$tablet) {
-            @include mobileParallaxCSS(url('./assets/images/wiki.PNG'));
+            @include mobileParallaxCSS(url('./assets/images/weather.PNG'));
         }
         min-height:100vh;
     }
@@ -337,17 +365,19 @@ html {
     padding: 2em 0;
     // background: center/cover no-repeat url("./assets/images/learning-bg.jpg");
     .statement {
-        font: {
-            size: 1.4rem;
-        }
-        padding:1em;
-        background:rgba(194,
-        204,
-        199,
-        0.7);
-        border-radius:5px;
-        @media(min-width:$tablet) {
+        font-size: 1.4rem;
+        padding: 1rem;
+        background: rgba(194, 204, 199, 0.7);
+        border-radius: 5px;
+        opacity: 0; // to be animated back to 1
+        @media(min-width: $tablet) {
             width: 50vw;
+        }
+        &.animated {
+            transition: all 2s ease;
+        }
+        &.in-view {
+            opacity: 1;
         }
     }
     .learning-resource {
@@ -374,26 +404,26 @@ html {
                 max-height: 10em;
             }
         }
-    }
-    //----------------animation
-    .ydkjs,
-    .htmlandcss {
-        position: relative;
-        left: -10%;
-        opacity: 0;
-    }
-    .eloquentjs,
-    .fcc {
-        position: relative;
-        left: 10%;
-        opacity: 0;
-    }
-    .animated {
-        transition: all 1s ease;
-    }
-    .in-view {
-        left: 0;
-        opacity: 1;
+        //----------------animation
+        .ydkjs,
+        .htmlandcss {
+            position: relative;
+            left: -10%;
+            opacity: 0;
+        }
+        .eloquentjs,
+        .fcc {
+            position: relative;
+            left: 10%;
+            opacity: 0;
+        }
+        .animated {
+            transition: all 1s ease;
+        }
+        .in-view {
+            left: 0;
+            opacity: 1;
+        }
     }
 }
 

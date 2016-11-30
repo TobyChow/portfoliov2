@@ -126,6 +126,26 @@ html {
     letter-spacing: 0.3rem;
     text-align: center;
     text-align: center; }
+  .projects .skills {
+    display: inline-flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    height: 100vh; }
+    .projects .skills img {
+      position: relative;
+      width: 3rem;
+      height: 3rem;
+      margin: 1rem 0.3rem;
+      left: -3rem;
+      opacity: 0; }
+      @media (min-width: 768px) {
+        .projects .skills img {
+          margin: 1rem 1.5rem; } }
+      .projects .skills img.animated {
+        transition: all 1s ease; }
+      .projects .skills img.in-view {
+        left: 0;
+        opacity: 1; }
   .projects .proj-content {
     position: absolute;
     left: 50%;
@@ -144,7 +164,7 @@ html {
     .projects .proj-content [class*='icon-container'] {
       display: inline-block;
       position: relative;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.7);
       padding: 0.5rem; }
       @media (min-width: 768px) {
         .projects .proj-content [class*='icon-container'] {
@@ -154,7 +174,7 @@ html {
       .projects .proj-content [class*='icon-container'] a {
         color: white; }
         .projects .proj-content [class*='icon-container'] a .fa {
-          font-size: 2rem;
+          font-size: 2em;
           text-align: center; }
     .projects .proj-content .icon-container-left {
       left: -50px;
@@ -207,7 +227,7 @@ html {
     @media (min-width: 768px) {
       .projects .project-1-img {
         position: relative;
-        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("./assets/images/weather.PNG");
+        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("./assets/images/wiki.PNG");
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
@@ -215,7 +235,7 @@ html {
     @media (max-width: 768px) {
       .projects .project-1-img {
         position: relative;
-        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("./assets/images/weather.PNG");
+        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("./assets/images/wiki.PNG");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat; } }
@@ -241,7 +261,7 @@ html {
     @media (min-width: 768px) {
       .projects .project-3-img {
         position: relative;
-        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("./assets/images/wiki.PNG");
+        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("./assets/images/weather.PNG");
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
@@ -249,7 +269,7 @@ html {
     @media (max-width: 768px) {
       .projects .project-3-img {
         position: relative;
-        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("./assets/images/wiki.PNG");
+        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("./assets/images/weather.PNG");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat; } }
@@ -303,12 +323,17 @@ html {
       background-repeat: no-repeat; } }
   .about .statement {
     font-size: 1.4rem;
-    padding: 1em;
+    padding: 1rem;
     background: rgba(194, 204, 199, 0.7);
-    border-radius: 5px; }
+    border-radius: 5px;
+    opacity: 0; }
     @media (min-width: 768px) {
       .about .statement {
         width: 50vw; } }
+    .about .statement.animated {
+      transition: all 2s ease; }
+    .about .statement.in-view {
+      opacity: 1; }
   .about .learning-resource {
     display: flex;
     flex-flow: row wrap; }
@@ -330,21 +355,21 @@ html {
       .about .learning-resource .resource img {
         max-width: 100%;
         max-height: 10em; }
-  .about .ydkjs,
-  .about .htmlandcss {
-    position: relative;
-    left: -10%;
-    opacity: 0; }
-  .about .eloquentjs,
-  .about .fcc {
-    position: relative;
-    left: 10%;
-    opacity: 0; }
-  .about .animated {
-    transition: all 1s ease; }
-  .about .in-view {
-    left: 0;
-    opacity: 1; }
+    .about .learning-resource .ydkjs,
+    .about .learning-resource .htmlandcss {
+      position: relative;
+      left: -10%;
+      opacity: 0; }
+    .about .learning-resource .eloquentjs,
+    .about .learning-resource .fcc {
+      position: relative;
+      left: 10%;
+      opacity: 0; }
+    .about .learning-resource .animated {
+      transition: all 1s ease; }
+    .about .learning-resource .in-view {
+      left: 0;
+      opacity: 1; }
 
 .contact {
   background: #e5e6e9;

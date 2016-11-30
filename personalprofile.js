@@ -14,7 +14,8 @@ $(document).ready(function() {
         }
     });
 
-    // Animate when scrolled into view
+    //------------------------ Animate when scrolled into view
+    
     // selector caching - so we don't have to call the DOM each scroll
     var $animated = $('.animated'); // list of elements to be animated
     var $window = $(window);
