@@ -11,4 +11,5 @@
 - HTML5
 - CSS3 (layout using Flexbox)
 - JavaScript
+- Sass
 - jQuery
