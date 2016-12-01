@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
 
+// bash folder with gulp.js, and change path to desired folder
 var path = './';
 
 var del = require('del');
@@ -9,7 +10,7 @@ const autoprefixer = require('gulp-autoprefixer');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync').create();
 
-var Promise = require('es6-promise').Promise; // require for autoprefixer
+var Promise = require('es6-promise').Promise.polyfill(); // require for autoprefixer
 
 
 
@@ -23,6 +24,7 @@ gulp.task('sass', function () {
   // ignore node_modules folder
   return gulp.src([path+'*.scss','!node_modules/**'],{base: "."})
     .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer()) // autoprefix 
     .pipe(gulp.dest('.'))
     .pipe(browserSync.reload({
       stream:true
@@ -33,17 +35,6 @@ gulp.task('sass:watch', function () {
   gulp.watch('*.scss', ['sass']);
 });
 
-//Autoprefixer - applies vendor pre-fixes
-gulp.task('autoprefix',function(){
-  // ignore node_modules folder
-    gulp.src([path+'**/*.css','!node_modules/**'],{base:"."})
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
-            cascade: false
-        }))
-        .pipe(gulp.dest('.'));
-});
-
 //Browser-Sync
 gulp.task('browserSync', function() {
   browserSync.init({
@@ -52,6 +43,17 @@ gulp.task('browserSync', function() {
     },
   });
 });
+
+//Autoprefixer - applies vendor pre-fixes
+// gulp.task('autoprefix',function(){
+//   // ignore node_modules folder
+//     gulp.src([path+'**/*.css','!node_modules/**'],{base:"."})
+//         .pipe(autoprefixer({
+//             browsers: ['last 2 versions'],
+//             cascade: false
+//         }))
+//         .pipe(gulp.dest('.'));
+// });
 
 
 ///////////////////// Tasks to run /////////////////////
